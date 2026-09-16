@@ -980,3 +980,141 @@ footer {
     }
 
 }
+
+/* =========================
+   GAS VARIABLES
+========================= */
+
+:root {
+
+    --gas: #d486ff;
+    --gas-glow: rgba(212,134,255,0.35);
+
+}
+
+
+/* =========================
+   STATE BUTTON GRID
+========================= */
+
+.state-buttons {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 14px;
+}
+
+
+/* =========================
+   GAS BUTTON
+========================= */
+
+.gas-btn.active {
+
+    border-color:
+        rgba(212,134,255,0.7);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(212,134,255,0.1),
+
+        0 0 30px
+        rgba(212,134,255,0.14);
+
+}
+
+
+/* =========================
+   GAS ICON
+========================= */
+
+.gas-btn .state-icon {
+
+    color:
+        var(--gas);
+
+}
+
+
+/* =========================
+   GAS BADGE
+========================= */
+
+.gas-badge {
+
+    background:
+        rgba(212,134,255,0.15);
+
+    color:
+        #dda6ff;
+
+}
+
+
+/* =========================
+   GAS SIMULATION
+========================= */
+
+.gas-area {
+
+    box-shadow:
+        inset 0 0 100px
+        rgba(212,134,255,0.1);
+
+}
+
+
+/* =========================
+   GAS PARTICLES
+========================= */
+
+.particle.gas-particle {
+
+    width: 11px;
+    height: 11px;
+
+    background:
+        #d486ff;
+
+    color:
+        rgba(212,134,255,0.6);
+
+    box-shadow:
+        0 0 13px
+        currentColor;
+
+}
+
+
+/* =========================
+   GAS INFO
+========================= */
+
+.gas-color {
+
+    background:
+        rgba(212,134,255,0.14);
+
+    color:
+        #dda6ff;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 850px) {
+
+    .state-buttons {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
