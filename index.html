@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Particle Motion Lab</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="tag">GENERAL SCIENCE</div>
+
+            <h1>Particle Motion Lab</h1>
+
+            <p>
+                Explore how molecules move differently in solids and liquids.
+            </p>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- STATE SELECTOR -->
+        <section class="control-card">
+
+            <div class="section-title">
+                <span class="number">01</span>
+
+                <div>
+                    <h2>Choose a State of Matter</h2>
+                    <p>
+                        Select a state and observe the movement of its particles.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="state-buttons">
+
+                <button
+                    id="solidButton"
+                    class="state-btn active solid-btn"
+                    type="button"
+                >
+                    <span class="state-icon">●</span>
+
+                    <span>
+                        <strong>Solid</strong>
+                        <small>Fixed arrangement</small>
+                    </span>
+                </button>
+
+
+                <button
+                    id="liquidButton"
+                    class="state-btn liquid-btn"
+                    type="button"
+                >
+                    <span class="state-icon">●</span>
+
+                    <span>
+                        <strong>Liquid</strong>
+                        <small>Particles can flow</small>
+                    </span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- SIMULATION -->
+        <section class="simulation-card">
+
+            <div class="simulation-header">
+
+                <div>
+                    <div class="mini-label">LIVE SIMULATION</div>
+
+                    <h2 id="stateTitle">
+                        Solid
+                    </h2>
+                </div>
+
+                <div
+                    id="stateBadge"
+                    class="state-badge solid-badge"
+                >
+                    SOLID
+                </div>
+
+            </div>
+
+
+            <div
+                id="simulationArea"
+                class="simulation-area solid-area"
+            >
+
+                <div class="container-glow"></div>
+
+                <div
+                    id="particles"
+                    class="particles"
+                ></div>
+
+
+                <div class="simulation-label">
+
+                    <span id="motionLabel">
+                        Vibrating in fixed positions
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTROLS -->
+
+            <div class="simulation-controls">
+
+                <div class="control">
+
+                    <label for="temperature">
+                        Temperature
+                    </label>
+
+                    <div class="range-row">
+
+                        <input
+                            id="temperature"
+                            type="range"
+                            min="1"
+                            max="100"
+                            value="30"
+                        >
+
+                        <strong id="temperatureValue">
+                            30%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="control">
+
+                    <label for="particleCount">
+                        Particles
+                    </label>
+
+                    <div class="range-row">
+
+                        <input
+                            id="particleCount"
+                            type="range"
+                            min="20"
+                            max="100"
+                            value="50"
+                        >
+
+                        <strong id="particleCountValue">
+                            50
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="action-row">
+
+                <button
+                    id="pauseButton"
+                    class="action-button primary"
+                    type="button"
+                >
+                    Pause
+                </button>
+
+                <button
+                    id="resetButton"
+                    class="action-button"
+                    type="button"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- EXPLANATION -->
+        <section class="explanation-grid">
+
+            <article class="info-card">
+
+                <div class="info-icon solid-color">
+                    S
+                </div>
+
+                <div>
+
+                    <h3>How particles move in a solid</h3>
+
+                    <p>
+                        Solid particles are packed very closely together.
+                        They cannot freely move from one place to another.
+                        Instead, they mainly vibrate around fixed positions.
+                    </p>
+
+                    <div class="fact">
+                        <strong>Particle spacing:</strong>
+                        Very close
+                    </div>
+
+                    <div class="fact">
+                        <strong>Movement:</strong>
+                        Vibrational motion
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="info-card">
+
+                <div class="info-icon liquid-color">
+                    L
+                </div>
+
+                <div>
+
+                    <h3>How particles move in a liquid</h3>
+
+                    <p>
+                        Liquid particles remain relatively close together,
+                        but they are not locked into fixed positions.
+                        They can move and slide past neighboring particles.
+                    </p>
+
+                    <div class="fact">
+                        <strong>Particle spacing:</strong>
+                        Close together
+                    </div>
+
+                    <div class="fact">
+                        <strong>Movement:</strong>
+                        Sliding and flowing
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- COMPARISON -->
+        <section class="comparison-card">
+
+            <div class="section-title">
+
+                <span class="number">02</span>
+
+                <div>
+                    <h2>Particle Comparison</h2>
+
+                    <p>
+                        Compare the microscopic behavior of the two states.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Property</th>
+                            <th>Solid</th>
+                            <th>Liquid</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Arrangement</td>
+                            <td>Very organized</td>
+                            <td>Less organized</td>
+                        </tr>
+
+                        <tr>
+                            <td>Particle distance</td>
+                            <td>Very close</td>
+                            <td>Close</td>
+                        </tr>
+
+                        <tr>
+                            <td>Movement</td>
+                            <td>Vibration</td>
+                            <td>Sliding / flowing</td>
+                        </tr>
+
+                        <tr>
+                            <td>Shape</td>
+                            <td>Fixed</td>
+                            <td>Takes shape of container</td>
+                        </tr>
+
+                        <tr>
+                            <td>Volume</td>
+                            <td>Definite</td>
+                            <td>Definite</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATUS -->
+        <section class="lesson-card">
+
+            <div class="lesson-symbol">
+                💡
+            </div>
+
+            <div>
+
+                <span class="mini-label">
+                    KEY IDEA
+                </span>
+
+                <h2 id="lessonTitle">
+                    Particles in a solid vibrate in place.
+                </h2>
+
+                <p id="lessonText">
+                    Increasing temperature makes the particles vibrate more
+                    strongly, but they remain around their fixed positions.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>
+            General Science • States of Matter • Particle Motion Simulation
+        </p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
