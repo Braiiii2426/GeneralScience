@@ -13,13 +13,19 @@
 
     <header class="hero">
         <div class="hero-content">
-            <div class="tag">GENERAL SCIENCE</div>
 
-            <h1>Particle Motion Lab</h1>
+            <div class="tag">
+                GENERAL SCIENCE
+            </div>
+
+            <h1>
+                Particle Motion Lab
+            </h1>
 
             <p>
-                Explore how molecules move differently in solids and liquids.
+                Explore how particles move differently in solids, liquids, and gases.
             </p>
+
         </div>
     </header>
 
@@ -30,14 +36,21 @@
         <section class="control-card">
 
             <div class="section-title">
-                <span class="number">01</span>
+
+                <span class="number">
+                    01
+                </span>
 
                 <div>
-                    <h2>Choose a State of Matter</h2>
+                    <h2>
+                        Choose a State of Matter
+                    </h2>
+
                     <p>
-                        Select a state and observe the movement of its particles.
+                        Select a state and observe how its particles behave.
                     </p>
                 </div>
+
             </div>
 
 
@@ -48,12 +61,16 @@
                     class="state-btn active solid-btn"
                     type="button"
                 >
-                    <span class="state-icon">●</span>
+
+                    <span class="state-icon">
+                        ●
+                    </span>
 
                     <span>
                         <strong>Solid</strong>
-                        <small>Fixed arrangement</small>
+                        <small>Particles vibrate in place</small>
                     </span>
+
                 </button>
 
 
@@ -62,12 +79,34 @@
                     class="state-btn liquid-btn"
                     type="button"
                 >
-                    <span class="state-icon">●</span>
+
+                    <span class="state-icon">
+                        ●
+                    </span>
 
                     <span>
                         <strong>Liquid</strong>
-                        <small>Particles can flow</small>
+                        <small>Particles slide and flow</small>
                     </span>
+
+                </button>
+
+
+                <button
+                    id="gasButton"
+                    class="state-btn gas-btn"
+                    type="button"
+                >
+
+                    <span class="state-icon">
+                        ●
+                    </span>
+
+                    <span>
+                        <strong>Gas</strong>
+                        <small>Particles move freely</small>
+                    </span>
+
                 </button>
 
             </div>
@@ -81,12 +120,17 @@
             <div class="simulation-header">
 
                 <div>
-                    <div class="mini-label">LIVE SIMULATION</div>
+
+                    <div class="mini-label">
+                        LIVE SIMULATION
+                    </div>
 
                     <h2 id="stateTitle">
                         Solid
                     </h2>
+
                 </div>
+
 
                 <div
                     id="stateBadge"
@@ -123,7 +167,6 @@
 
 
             <!-- CONTROLS -->
-
             <div class="simulation-controls">
 
                 <div class="control">
@@ -204,6 +247,7 @@
         <!-- EXPLANATION -->
         <section class="explanation-grid">
 
+            <!-- SOLID -->
             <article class="info-card">
 
                 <div class="info-icon solid-color">
@@ -212,17 +256,19 @@
 
                 <div>
 
-                    <h3>How particles move in a solid</h3>
+                    <h3>
+                        How particles move in a solid
+                    </h3>
 
                     <p>
                         Solid particles are packed very closely together.
-                        They cannot freely move from one place to another.
+                        They cannot freely move from one location to another.
                         Instead, they mainly vibrate around fixed positions.
                     </p>
 
                     <div class="fact">
-                        <strong>Particle spacing:</strong>
-                        Very close
+                        <strong>Arrangement:</strong>
+                        Very close and organized
                     </div>
 
                     <div class="fact">
@@ -235,6 +281,7 @@
             </article>
 
 
+            <!-- LIQUID -->
             <article class="info-card">
 
                 <div class="info-icon liquid-color">
@@ -243,22 +290,58 @@
 
                 <div>
 
-                    <h3>How particles move in a liquid</h3>
+                    <h3>
+                        How particles move in a liquid
+                    </h3>
 
                     <p>
-                        Liquid particles remain relatively close together,
-                        but they are not locked into fixed positions.
-                        They can move and slide past neighboring particles.
+                        Liquid particles remain close together, but they
+                        are not locked in fixed positions. They can move
+                        and slide past neighboring particles.
                     </p>
 
                     <div class="fact">
-                        <strong>Particle spacing:</strong>
-                        Close together
+                        <strong>Arrangement:</strong>
+                        Close but less organized
                     </div>
 
                     <div class="fact">
                         <strong>Movement:</strong>
                         Sliding and flowing
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- GAS -->
+            <article class="info-card">
+
+                <div class="info-icon gas-color">
+                    G
+                </div>
+
+                <div>
+
+                    <h3>
+                        How particles move in a gas
+                    </h3>
+
+                    <p>
+                        Gas particles are much farther apart and move
+                        rapidly in many directions. They spread throughout
+                        the available space and collide with the container.
+                    </p>
+
+                    <div class="fact">
+                        <strong>Arrangement:</strong>
+                        Far apart and random
+                    </div>
+
+                    <div class="fact">
+                        <strong>Movement:</strong>
+                        Rapid and free motion
                     </div>
 
                 </div>
@@ -273,14 +356,20 @@
 
             <div class="section-title">
 
-                <span class="number">02</span>
+                <span class="number">
+                    02
+                </span>
 
                 <div>
-                    <h2>Particle Comparison</h2>
+
+                    <h2>
+                        Particle Comparison
+                    </h2>
 
                     <p>
-                        Compare the microscopic behavior of the two states.
+                        Compare the microscopic behavior of each state.
                     </p>
+
                 </div>
 
             </div>
@@ -296,6 +385,7 @@
                             <th>Property</th>
                             <th>Solid</th>
                             <th>Liquid</th>
+                            <th>Gas</th>
                         </tr>
 
                     </thead>
@@ -303,33 +393,107 @@
                     <tbody>
 
                         <tr>
-                            <td>Arrangement</td>
-                            <td>Very organized</td>
-                            <td>Less organized</td>
+
+                            <td>
+                                Arrangement
+                            </td>
+
+                            <td>
+                                Very organized
+                            </td>
+
+                            <td>
+                                Less organized
+                            </td>
+
+                            <td>
+                                Random
+                            </td>
+
                         </tr>
 
-                        <tr>
-                            <td>Particle distance</td>
-                            <td>Very close</td>
-                            <td>Close</td>
-                        </tr>
 
                         <tr>
-                            <td>Movement</td>
-                            <td>Vibration</td>
-                            <td>Sliding / flowing</td>
+
+                            <td>
+                                Particle distance
+                            </td>
+
+                            <td>
+                                Very close
+                            </td>
+
+                            <td>
+                                Close
+                            </td>
+
+                            <td>
+                                Far apart
+                            </td>
+
                         </tr>
 
-                        <tr>
-                            <td>Shape</td>
-                            <td>Fixed</td>
-                            <td>Takes shape of container</td>
-                        </tr>
 
                         <tr>
-                            <td>Volume</td>
-                            <td>Definite</td>
-                            <td>Definite</td>
+
+                            <td>
+                                Movement
+                            </td>
+
+                            <td>
+                                Vibration
+                            </td>
+
+                            <td>
+                                Sliding / flowing
+                            </td>
+
+                            <td>
+                                Rapid and free
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Shape
+                            </td>
+
+                            <td>
+                                Fixed
+                            </td>
+
+                            <td>
+                                Takes container shape
+                            </td>
+
+                            <td>
+                                Fills container
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Volume
+                            </td>
+
+                            <td>
+                                Definite
+                            </td>
+
+                            <td>
+                                Definite
+                            </td>
+
+                            <td>
+                                Not definite
+                            </td>
+
                         </tr>
 
                     </tbody>
@@ -341,7 +505,7 @@
         </section>
 
 
-        <!-- STATUS -->
+        <!-- LESSON -->
         <section class="lesson-card">
 
             <div class="lesson-symbol">
@@ -371,9 +535,11 @@
 
 
     <footer>
+
         <p>
             General Science • States of Matter • Particle Motion Simulation
         </p>
+
     </footer>
 
 
