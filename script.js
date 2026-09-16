@@ -11,6 +11,9 @@ const solidButton =
 const liquidButton =
     document.getElementById("liquidButton");
 
+const gasButton =
+    document.getElementById("gasButton");
+
 const simulationArea =
     document.getElementById("simulationArea");
 
@@ -52,12 +55,14 @@ const lessonText =
 
 
 /* =========================
-   SIMULATION STATE
+   STATE
 ========================= */
 
-let currentState = "solid";
+let currentState =
+    "solid";
 
-let isPaused = false;
+let isPaused =
+    false;
 
 let particles = [];
 
@@ -65,10 +70,10 @@ let animationFrame;
 
 
 /* =========================
-   SOLID LAYOUT
+   SOLID POSITION
 ========================= */
 
-function createSolidParticlePosition(
+function createSolidPosition(
     index,
     total
 ) {
@@ -109,12 +114,19 @@ function createSolidParticlePosition(
 
 
     return {
+
         baseX: x,
+
         baseY: y,
-        x,
-        y,
+
+        x: x,
+
+        y: y,
+
         vx: 0,
+
         vy: 0
+
     };
 
 }
@@ -124,17 +136,17 @@ function createSolidParticlePosition(
    LIQUID POSITION
 ========================= */
 
-function createLiquidParticlePosition() {
+function createLiquidPosition() {
 
     return {
 
         x:
-            5 +
-            Math.random() * 90,
+            10 +
+            Math.random() * 80,
 
         y:
-            5 +
-            Math.random() * 90,
+            15 +
+            Math.random() * 70,
 
         vx:
             (Math.random() - 0.5) * 0.35,
@@ -148,12 +160,40 @@ function createLiquidParticlePosition() {
 
 
 /* =========================
+   GAS POSITION
+========================= */
+
+function createGasPosition() {
+
+    return {
+
+        x:
+            3 +
+            Math.random() * 94,
+
+        y:
+            3 +
+            Math.random() * 94,
+
+        vx:
+            (Math.random() - 0.5) * 1.3,
+
+        vy:
+            (Math.random() - 0.5) * 1.3
+
+    };
+
+}
+
+
+/* =========================
    CREATE PARTICLES
 ========================= */
 
 function createParticles() {
 
-    particlesContainer.innerHTML = "";
+    particlesContainer.innerHTML =
+        "";
 
     particles = [];
 
@@ -175,10 +215,18 @@ function createParticles() {
                 "div"
             );
 
+
         element.classList.add(
             "particle"
         );
 
+
+        let position;
+
+
+        /*
+         * SOLID
+         */
 
         if (
             currentState === "solid"
@@ -188,38 +236,56 @@ function createParticles() {
                 "solid-particle"
             );
 
-            const position =
-                createSolidParticlePosition(
+            position =
+                createSolidPosition(
                     i,
                     total
                 );
 
-            particles.push({
+        }
 
-                element,
 
-                ...position
+        /*
+         * LIQUID
+         */
 
-            });
-
-        } else {
+        else if (
+            currentState === "liquid"
+        ) {
 
             element.classList.add(
                 "liquid-particle"
             );
 
-            const position =
-                createLiquidParticlePosition();
-
-            particles.push({
-
-                element,
-
-                ...position
-
-            });
+            position =
+                createLiquidPosition();
 
         }
+
+
+        /*
+         * GAS
+         */
+
+        else {
+
+            element.classList.add(
+                "gas-particle"
+            );
+
+            position =
+                createGasPosition();
+
+        }
+
+
+        particles.push({
+
+            element,
+
+            ...position
+
+        });
 
 
         particlesContainer.appendChild(
@@ -232,10 +298,14 @@ function createParticles() {
 
 
 /* =========================
-   UPDATE PARTICLES
+   PARTICLE ANIMATION
 ========================= */
 
 function updateParticles() {
+
+    /*
+     * TEMPERATURE
+     */
 
     const temp =
         Number(
@@ -246,11 +316,8 @@ function updateParticles() {
     /*
      * SOLID
      *
-     * Particles remain near their
-     * original positions.
-     *
-     * Higher temperature =
-     * stronger vibration.
+     * Particles vibrate around
+     * fixed positions.
      */
 
     if (
@@ -259,15 +326,16 @@ function updateParticles() {
 
         const vibration =
             0.015 +
-            temp * 0.0009;
+            temp * 0.001;
+
+
+        const time =
+            performance.now() /
+            1000;
 
 
         particles.forEach(
             particle => {
-
-                const time =
-                    performance.now() / 1000;
-
 
                 const phase =
                     particle.baseX *
@@ -312,15 +380,17 @@ function updateParticles() {
     /*
      * LIQUID
      *
-     * Particles freely travel around
-     * the container.
+     * Particles move relatively
+     * slowly and remain close.
      */
 
-    else {
+    else if (
+        currentState === "liquid"
+    ) {
 
         const speed =
             0.08 +
-            temp * 0.0028;
+            temp * 0.0025;
 
 
         particles.forEach(
@@ -331,22 +401,17 @@ function updateParticles() {
                     speed *
                     2.5;
 
-
                 particle.y +=
                     particle.vy *
                     speed *
                     2.5;
 
 
-                /*
-                 * Bounce off container walls.
-                 */
-
                 if (
-                    particle.x < 3
+                    particle.x < 5
                 ) {
 
-                    particle.x = 3;
+                    particle.x = 5;
 
                     particle.vx =
                         Math.abs(
@@ -357,10 +422,10 @@ function updateParticles() {
 
 
                 if (
-                    particle.x > 97
+                    particle.x > 95
                 ) {
 
-                    particle.x = 97;
+                    particle.x = 95;
 
                     particle.vx =
                         -Math.abs(
@@ -371,10 +436,10 @@ function updateParticles() {
 
 
                 if (
-                    particle.y < 3
+                    particle.y < 5
                 ) {
 
-                    particle.y = 3;
+                    particle.y = 5;
 
                     particle.vy =
                         Math.abs(
@@ -385,10 +450,10 @@ function updateParticles() {
 
 
                 if (
-                    particle.y > 97
+                    particle.y > 95
                 ) {
 
-                    particle.y = 97;
+                    particle.y = 95;
 
                     particle.vy =
                         -Math.abs(
@@ -397,33 +462,19 @@ function updateParticles() {
 
                 }
 
-
-                /*
-                 * Slight random changes
-                 * make liquid motion less
-                 * perfectly straight.
-                 */
 
                 particle.vx +=
                     (Math.random() - 0.5)
-                    * 0.012
-                    * speed;
-
+                    * 0.012;
 
                 particle.vy +=
                     (Math.random() - 0.5)
-                    * 0.012
-                    * speed;
+                    * 0.012;
 
-
-                /*
-                 * Prevent particles from
-                 * accelerating forever.
-                 */
 
                 const maxSpeed =
-                    0.6 +
-                    temp * 0.005;
+                    0.55 +
+                    temp * 0.004;
 
 
                 particle.vx =
@@ -460,8 +511,156 @@ function updateParticles() {
 
 
     /*
-     * Continue animation.
+     * GAS
+     *
+     * Particles are far apart and
+     * travel rapidly in random directions.
      */
+
+    else {
+
+        /*
+         * Temperature controls gas speed.
+         */
+
+        const speedMultiplier =
+            0.65 +
+            temp * 0.012;
+
+
+        particles.forEach(
+            particle => {
+
+                particle.x +=
+                    particle.vx *
+                    speedMultiplier;
+
+                particle.y +=
+                    particle.vy *
+                    speedMultiplier;
+
+
+                /*
+                 * Bounce off left/right.
+                 */
+
+                if (
+                    particle.x <= 1
+                ) {
+
+                    particle.x = 1;
+
+                    particle.vx =
+                        Math.abs(
+                            particle.vx
+                        );
+
+                }
+
+
+                if (
+                    particle.x >= 99
+                ) {
+
+                    particle.x = 99;
+
+                    particle.vx =
+                        -Math.abs(
+                            particle.vx
+                        );
+
+                }
+
+
+                /*
+                 * Bounce off top/bottom.
+                 */
+
+                if (
+                    particle.y <= 1
+                ) {
+
+                    particle.y = 1;
+
+                    particle.vy =
+                        Math.abs(
+                            particle.vy
+                        );
+
+                }
+
+
+                if (
+                    particle.y >= 99
+                ) {
+
+                    particle.y = 99;
+
+                    particle.vy =
+                        -Math.abs(
+                            particle.vy
+                        );
+
+                }
+
+
+                /*
+                 * Slight random changes
+                 * simulate irregular motion.
+                 */
+
+                particle.vx +=
+                    (
+                        Math.random() - 0.5
+                    ) * 0.025;
+
+                particle.vy +=
+                    (
+                        Math.random() - 0.5
+                    ) * 0.025;
+
+
+                /*
+                 * Keep the gas fast but bounded.
+                 */
+
+                const maxSpeed =
+                    1.8 +
+                    temp * 0.015;
+
+
+                particle.vx =
+                    Math.max(
+                        -maxSpeed,
+                        Math.min(
+                            maxSpeed,
+                            particle.vx
+                        )
+                    );
+
+
+                particle.vy =
+                    Math.max(
+                        -maxSpeed,
+                        Math.min(
+                            maxSpeed,
+                            particle.vy
+                        )
+                    );
+
+
+                particle.element.style.left =
+                    particle.x + "%";
+
+
+                particle.element.style.top =
+                    particle.y + "%";
+
+            }
+        );
+
+    }
+
 
     animationFrame =
         requestAnimationFrame(
@@ -472,7 +671,7 @@ function updateParticles() {
 
 
 /* =========================
-   CHANGE STATE
+   SET STATE
 ========================= */
 
 function setState(
@@ -484,7 +683,7 @@ function setState(
 
 
     /*
-     * Change buttons.
+     * BUTTON STATES
      */
 
     solidButton.classList.toggle(
@@ -497,24 +696,30 @@ function setState(
         currentState === "liquid"
     );
 
+    gasButton.classList.toggle(
+        "active",
+        currentState === "gas"
+    );
+
 
     /*
-     * Change simulation appearance.
+     * SIMULATION AREA
      */
 
-    simulationArea.classList.toggle(
+    simulationArea.classList.remove(
         "solid-area",
-        currentState === "solid"
+        "liquid-area",
+        "gas-area"
     );
 
-    simulationArea.classList.toggle(
-        "liquid-area",
-        currentState === "liquid"
+
+    simulationArea.classList.add(
+        `${currentState}-area`
     );
 
 
     /*
-     * Update text.
+     * SOLID
      */
 
     if (
@@ -538,9 +743,18 @@ function setState(
             "Particles in a solid vibrate in place.";
 
         lessonText.textContent =
-            "Increasing temperature makes the particles vibrate more strongly, but they remain around their fixed positions.";
+            "The particles are packed closely together and mainly vibrate around fixed positions. Higher temperature increases their vibration.";
 
-    } else {
+    }
+
+
+    /*
+     * LIQUID
+     */
+
+    else if (
+        currentState === "liquid"
+    ) {
 
         stateTitle.textContent =
             "Liquid";
@@ -559,21 +773,50 @@ function setState(
             "Particles in a liquid can move around.";
 
         lessonText.textContent =
-            "Liquid particles remain close together, but they can change positions and slide past neighboring particles.";
+            "Liquid particles remain close together, but they are able to change positions and slide past neighboring particles.";
 
     }
 
 
     /*
-     * Rebuild particles for the
-     * new state.
+     * GAS
+     */
+
+    else {
+
+        stateTitle.textContent =
+            "Gas";
+
+        stateBadge.textContent =
+            "GAS";
+
+        stateBadge.className =
+            "state-badge gas-badge";
+
+        motionLabel.textContent =
+            "Rapidly moving in all directions";
+
+
+        lessonTitle.textContent =
+            "Particles in a gas move freely.";
+
+        lessonText.textContent =
+            "Gas particles are far apart and move rapidly in many directions. They spread throughout the available space.";
+
+    }
+
+
+    /*
+     * REBUILD
      */
 
     cancelAnimationFrame(
         animationFrame
     );
 
+
     createParticles();
+
 
     animationFrame =
         requestAnimationFrame(
@@ -617,28 +860,40 @@ particleCount.addEventListener(
 
 
 /* =========================
-   SOLID BUTTON
+   BUTTONS
 ========================= */
 
 solidButton.addEventListener(
     "click",
     () => {
 
-        setState("solid");
+        setState(
+            "solid"
+        );
 
     }
 );
 
 
-/* =========================
-   LIQUID BUTTON
-========================= */
-
 liquidButton.addEventListener(
     "click",
     () => {
 
-        setState("liquid");
+        setState(
+            "liquid"
+        );
+
+    }
+);
+
+
+gasButton.addEventListener(
+    "click",
+    () => {
+
+        setState(
+            "gas"
+        );
 
     }
 );
@@ -656,7 +911,9 @@ pauseButton.addEventListener(
             !isPaused;
 
 
-        if (isPaused) {
+        if (
+            isPaused
+        ) {
 
             cancelAnimationFrame(
                 animationFrame
@@ -710,7 +967,9 @@ resetButton.addEventListener(
             "Pause";
 
 
-        setState("solid");
+        setState(
+            "solid"
+        );
 
     }
 );
