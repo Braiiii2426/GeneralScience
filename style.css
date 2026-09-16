@@ -1,0 +1,982 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+
+    --background: #080d18;
+    --panel: #111a2a;
+    --panel-light: #172238;
+
+    --white: #f5f8ff;
+    --muted: #9eabc0;
+
+    --solid: #65a9ff;
+    --solid-glow: rgba(101,169,255,0.35);
+
+    --liquid: #38e0b3;
+    --liquid-glow: rgba(56,224,179,0.3);
+
+    --border: rgba(255,255,255,0.09);
+
+    --shadow: 0 25px 70px rgba(0,0,0,0.35);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% -15%,
+            #263d70 0%,
+            #10192c 35%,
+            #080d18 75%
+        );
+
+    color: var(--white);
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    padding: 70px 20px;
+
+    text-align: center;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(40,66,112,0.35),
+            transparent
+        );
+}
+
+.hero-content {
+    max-width: 850px;
+    margin: auto;
+}
+
+.tag {
+
+    display: inline-block;
+
+    padding: 7px 13px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    border-radius: 999px;
+
+    color: #bcd2ff;
+
+    font-size: 0.7rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.18em;
+
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+
+    font-size:
+        clamp(
+            2.6rem,
+            7vw,
+            5.5rem
+        );
+
+    line-height: 1;
+
+    letter-spacing: -0.04em;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #9ec9ff
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero p {
+
+    max-width: 650px;
+
+    margin:
+        18px
+        auto
+        0;
+
+    color: var(--muted);
+
+    font-size: 1.02rem;
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.container {
+
+    width: min(
+        1100px,
+        calc(100% - 30px)
+    );
+
+    margin: auto;
+
+    padding:
+        30px
+        0
+        70px;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.control-card,
+.simulation-card,
+.comparison-card,
+.lesson-card,
+.info-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,38,61,0.94),
+            rgba(13,21,35,0.97)
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 24px;
+
+    box-shadow: var(--shadow);
+}
+
+.control-card,
+.simulation-card,
+.comparison-card {
+
+    padding: 24px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+}
+
+.number {
+
+    display: grid;
+
+    place-items: center;
+
+    width: 38px;
+    height: 38px;
+
+    flex:
+        0 0
+        38px;
+
+    border-radius: 12px;
+
+    background: #253654;
+
+    color: #bcd2ff;
+
+    font-size: 0.75rem;
+
+    font-weight: 900;
+}
+
+.section-title h2 {
+
+    font-size: 1.35rem;
+
+    letter-spacing: -0.02em;
+}
+
+.section-title p {
+
+    color: var(--muted);
+
+    margin-top: 4px;
+
+    font-size: 0.85rem;
+}
+
+
+/* =========================
+   STATE BUTTONS
+========================= */
+
+.state-buttons {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 14px;
+}
+
+.state-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 18px;
+
+    text-align: left;
+
+    color: white;
+
+    background: #101827;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 17px;
+
+    transition:
+        0.2s
+        ease;
+
+}
+
+.state-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    background: #172237;
+}
+
+.state-btn.active.solid-btn {
+
+    border-color:
+        rgba(101,169,255,0.65);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(101,169,255,0.1),
+
+        0 0 30px
+        rgba(101,169,255,0.12);
+}
+
+.state-btn.active.liquid-btn {
+
+    border-color:
+        rgba(56,224,179,0.65);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(56,224,179,0.1),
+
+        0 0 30px
+        rgba(56,224,179,0.12);
+}
+
+.state-icon {
+
+    display: grid;
+
+    place-items: center;
+
+    width: 43px;
+    height: 43px;
+
+    border-radius: 14px;
+
+    background: #17243a;
+
+    font-size: 1.4rem;
+}
+
+.solid-btn .state-icon {
+    color: var(--solid);
+}
+
+.liquid-btn .state-icon {
+    color: var(--liquid);
+}
+
+.state-btn strong {
+
+    display: block;
+
+    font-size: 1rem;
+}
+
+.state-btn small {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 0.74rem;
+}
+
+
+/* =========================
+   SIMULATION
+========================= */
+
+.simulation-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.mini-label {
+
+    color: #8ea4c7;
+
+    font-size: 0.65rem;
+
+    font-weight: 900;
+
+    letter-spacing: 0.16em;
+}
+
+.simulation-header h2 {
+
+    margin-top: 4px;
+
+    font-size: 1.6rem;
+}
+
+.state-badge {
+
+    padding:
+        7px
+        12px;
+
+    border-radius: 999px;
+
+    font-size: 0.68rem;
+
+    font-weight: 900;
+
+    letter-spacing: 0.1em;
+}
+
+.solid-badge {
+
+    background:
+        rgba(101,169,255,0.15);
+
+    color:
+        #8cc1ff;
+}
+
+.liquid-badge {
+
+    background:
+        rgba(56,224,179,0.15);
+
+    color:
+        #66edc9;
+}
+
+
+/* =========================
+   SIMULATION AREA
+========================= */
+
+.simulation-area {
+
+    position: relative;
+
+    height: 450px;
+
+    overflow: hidden;
+
+    border-radius: 21px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    background:
+        #09111e;
+}
+
+.solid-area {
+
+    box-shadow:
+        inset 0 0 80px
+        rgba(40,115,200,0.09);
+}
+
+.liquid-area {
+
+    box-shadow:
+        inset 0 0 80px
+        rgba(20,200,157,0.09);
+}
+
+.container-glow {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(80,150,255,0.08),
+            transparent 55%
+        );
+}
+
+.particles {
+
+    position: absolute;
+
+    inset: 30px;
+}
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particle {
+
+    position: absolute;
+
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    will-change:
+        left,
+        top,
+        transform;
+
+    box-shadow:
+        0 0 10px
+        currentColor;
+
+}
+
+.particle.solid-particle {
+
+    background:
+        #6eb3ff;
+
+    color:
+        rgba(110,179,255,0.65);
+}
+
+.particle.liquid-particle {
+
+    background:
+        #42e2b7;
+
+    color:
+        rgba(66,226,183,0.65);
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.simulation-label {
+
+    position: absolute;
+
+    bottom: 15px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    padding:
+        8px
+        13px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(4,9,16,0.75);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.09);
+
+    backdrop-filter:
+        blur(8px);
+
+    font-size: .72rem;
+
+    color: #c5d2e5;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   CONTROLS
+========================= */
+
+.simulation-controls {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 16px;
+
+    margin-top: 20px;
+}
+
+.control {
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    background: #0d1625;
+
+    border:
+        1px solid var(--border);
+}
+
+.control label {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #b7c5d9;
+
+    font-size: 0.75rem;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+}
+
+.range-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.range-row input {
+
+    width: 100%;
+
+    accent-color:
+        #74b7ff;
+}
+
+.range-row strong {
+
+    min-width: 45px;
+
+    text-align: right;
+
+    font-size: .8rem;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.action-row {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 16px;
+}
+
+.action-button {
+
+    padding:
+        12px
+        20px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid var(--border);
+
+    background: #17243a;
+
+    color: white;
+
+    font-weight: 800;
+
+    transition: .2s;
+}
+
+.action-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    background: #21324e;
+}
+
+.action-button.primary {
+
+    background:
+        linear-gradient(
+            135deg,
+            #347ed1,
+            #5eafff
+        );
+
+    color: white;
+
+    border: 0;
+}
+
+
+/* =========================
+   INFORMATION
+========================= */
+
+.explanation-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+}
+
+.info-card {
+
+    display: flex;
+
+    gap: 15px;
+
+    padding: 22px;
+}
+
+.info-icon {
+
+    display: grid;
+
+    place-items: center;
+
+    width: 44px;
+    height: 44px;
+
+    flex:
+        0 0
+        44px;
+
+    border-radius: 13px;
+
+    font-weight: 900;
+}
+
+.solid-color {
+
+    background:
+        rgba(101,169,255,0.14);
+
+    color: #8bc2ff;
+}
+
+.liquid-color {
+
+    background:
+        rgba(56,224,179,0.14);
+
+    color: #64edca;
+}
+
+.info-card h3 {
+
+    font-size: 1rem;
+
+    margin-bottom: 8px;
+}
+
+.info-card p {
+
+    color: var(--muted);
+
+    font-size: .85rem;
+
+    line-height: 1.65;
+}
+
+.fact {
+
+    margin-top: 8px;
+
+    color: #c3d0e0;
+
+    font-size: .75rem;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 600px;
+}
+
+th,
+td {
+
+    padding:
+        13px
+        14px;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid var(--border);
+
+    font-size: .83rem;
+}
+
+th {
+
+    background: #152239;
+
+    color: #a9c4ef;
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+
+    font-size: .68rem;
+}
+
+td {
+    color: #c7d2e1;
+}
+
+tbody tr:hover {
+    background: rgba(255,255,255,.025);
+}
+
+
+/* =========================
+   LESSON
+========================= */
+
+.lesson-card {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 22px;
+}
+
+.lesson-symbol {
+
+    display: grid;
+
+    place-items: center;
+
+    width: 45px;
+    height: 45px;
+
+    flex:
+        0 0
+        45px;
+
+    border-radius: 13px;
+
+    background:
+        rgba(255,202,70,0.12);
+
+    font-size: 1.3rem;
+}
+
+.lesson-card h2 {
+
+    margin-top: 3px;
+
+    font-size: 1.1rem;
+}
+
+.lesson-card p {
+
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: .84rem;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    padding:
+        25px
+        15px
+        40px;
+
+    text-align: center;
+
+    color: #6f7e95;
+
+    font-size: .7rem;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 750px) {
+
+    .state-buttons,
+    .simulation-controls,
+    .explanation-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .simulation-area {
+
+        height: 390px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .container {
+
+        width:
+            calc(
+                100% - 18px
+            );
+    }
+
+    .control-card,
+    .simulation-card,
+    .comparison-card,
+    .lesson-card,
+    .info-card {
+
+        border-radius: 17px;
+
+        padding: 16px;
+    }
+
+    .simulation-area {
+
+        height: 350px;
+    }
+
+    .simulation-label {
+
+        font-size: .63rem;
+    }
+
+}
